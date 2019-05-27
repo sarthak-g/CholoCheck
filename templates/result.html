@@ -1,0 +1,86 @@
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+<script>alert("Result ready.Press 'ok' to see.")</script>
+<style>
+  body{
+    background-image: url({% static 'image/bgwelcome.jpg' %});
+    height: 100%;
+
+   /* Center and scale the image nicely */
+
+   background-repeat: no-repeat;
+   background-size: cover;
+  }
+  div{
+    position : absolute;
+    right:10px;
+    top: 5px;
+  }
+</style>
+
+</head>
+<body>
+
+  <div>
+  <button type="button" onclick="location.href='{% url 'log' %}'">Logout</button>
+  </div>
+<h3>Cholasterol Symptoms detected.Please Contact Doctor as soon as possible</h3>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+
+<script>
+
+  var config = {
+      apiKey: "AIzaSyCG-EbfcPM8GBUyFWIcuR5azrHlVG53ado",
+      authDomain: "cholocheck-54b2d.firebaseapp.com",
+      databaseURL: "https://cholocheck-54b2d.firebaseio.com",
+      projectId: "cholocheck-54b2d",
+      storageBucket: "cholocheck-54b2d.appspot.com",
+      messagingSenderId: "504827221145",
+    };
+    firebase.initializeApp(config);
+
+    function uploadimage(){
+
+      var file = document.getElementById("files").files[0];
+      var storageRef = firebase.storage().ref();
+
+      var uploadTask = storageRef.child(file.name).put(file);
+
+        uploadTask.on('state_changed', function(snapshot){
+
+  var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  console.log('Upload is ' + progress + '% done');
+  switch (snapshot.state) {
+    case firebase.storage.TaskState.PAUSED:
+      console.log('Upload is paused');
+      break;
+    case firebase.storage.TaskState.RUNNING:
+      console.log('Upload is running');
+      break;
+  }
+}, function(error) {
+      console.log(error)
+}, function() {
+  console.log("got URL")
+uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+      document.getElementById("url").value = downloadURL;
+});
+
+  });
+
+    }
+
+</script>
+
+</html>

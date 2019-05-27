@@ -1,0 +1,51 @@
+
+{% load static %}
+{% if messg %}
+<script>
+  alert(' {{messg}} ');
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+body{
+  background-image: url({% static 'image/bg2.jpg' %});
+  height: 100%;
+
+ /* Center and scale the image nicely */
+
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+</style>
+
+</head>
+<body>
+<div class="container" style="background-color:#ffffff;width:400px;margin-top:130px;height:700px;background-color:#1CC7D0;opacity:0.5;" >
+
+  <div ><img src="{% static 'image/user.jpg' %}" alt="" style="border-radius: 50%;align:center;margin-top:40px;margin-left:120px;height:150px;"></div>
+  <div class="container" style="background-color:#ffffff;height:300px;margin-top:30px;padding:20px;border-radius:13%;height:450px;">
+    <form action="/postsignup/" method="POST">
+      {% csrf_token %}
+
+      <input type="text" name="name" style="width:320px;margin-top:20px;height:50px;" placeholder="Name....."><br><br>
+      <input type="email" name="email" style="width:320px;margin-top:20px;height:50px;" placeholder="Email....."><br><br>
+      <input type="password" name = "pass" style="width:320px;margin-top:20px;height:50px;" placeholder="Password....."><br><br>
+      <input type = "submit" value="SIgnUp" style="width:320px;margin-top:20px;height:50px;background-color:#1CC7D0;border-radius:15px;">
+    </form>
+
+  </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
